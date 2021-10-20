@@ -28,11 +28,18 @@ export default {
   },
   created() {
     this.loadTeamMembers(this.teamId);
+    console.log(this.$route.query);
+  },
+  beforeRouteEnter(to, from, next) {
+    console.log('beforeRouteEnter Team members Cmp');
+    // this.loadTeamMembers(to.params.teamId); // This can be an alternative to watcher ways
+    console.log(to, from);
+    next();
   },
   methods: {
     loadTeamMembers(teamId) {
       // console.log(route);
-      console.log(this.teams);
+      // console.log(this.teams);
       // const teamId = route.params.teamId;
       const selectedTeam = this.teams.find(team => team.id == teamId);
       this.members = [];
